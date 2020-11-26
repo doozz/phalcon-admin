@@ -1,0 +1,36 @@
+<div class="row">
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">二次绑定</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <dl>
+                <?php if($bind == 0 ) {?>
+                <img src="<?=$qrcode?>" hight="200px" wigth="200px">
+                <form role="form" method="post" action="/admin/binding">
+                    <input type="hidden" name="secret" value="<?=$secret?>">
+                    <dt>扫码后请出入验证码绑定</dt>
+                    <div class="form-group">
+                      <input type="text" class="form-control-6" name="code" placeholder="输入验证码">
+                    </div>
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">绑定</button>
+                  </div>
+                </form>
+                <?php } else {?>
+                    <dt>✅该账号已完成二次绑定</dt>
+                <?php }?>
+                
+              </dl>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+    </div>
+  
+    

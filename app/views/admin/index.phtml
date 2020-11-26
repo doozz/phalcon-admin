@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="box">
+            <div class="box-header with-border">
+                <h1 class="box-title"><a href="index">管理员</a></h1>
+                <div class="box-tools">
+                    <a href="add">
+                    <button type="button" class="btn bg-maroon margin btn-sm" style="margin-top: 8px;">
+                      <i class="fa fa-fw fa-plus"></i>新增</button>
+                    </a>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center th-center">
+                    <tr>
+                        <th>管理员名</th>
+                        <th>是否主管理员</th>
+                        <th>所属组</th>
+                        <th >状态</th>
+                        <th >最后登录时间</th>
+                        <th >最后登录IP</th>
+                        <th >注册时间</th>
+                        <th >操作管理</th>
+                    </tr>
+                 <?php foreach ($adminLists as $admin) { ?>
+                <tr>
+                    <td><?php echo $admin['u_name']; ?></td>
+                    <td><?php echo $admin['u_super'] == 1 ? '是' : '否'; ?></td>
+                    <td><?php echo $admin['u_super'] == 1 ? '超级管理员' : $admin['pg_name']; ?></td>
+                    <td class="center"><?php echo $admin['u_status'] == 1 ? '<span class="badge bg-blue">正常</span>' : '<span class="badge bg-red">禁用</span>'; ?></td>
+                    <td><?php echo date('Y-m-d H:i:s',$admin['u_lastlogintime']); ?></td>
+                    <td><?php echo $admin['u_lastloginip']; ?></td>
+                    <td><?php echo date('Y-m-d H:i:s',$admin['u_addtime']); ?></td>
+                    <td>
+                    <div>
+                        <a href="edit?id=<?php echo $admin['u_id']; ?>" title="编辑" class="btn btn-info btn-sm checkbox-toggle">
+                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                            编辑
+                        </a>
+                        <a href="del?id=<?php echo $admin['u_id']; ?>"  title="删除" class="btn btn-danger btn-sm checkbox-toggle del" >
+                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                            删除
+                        </a>
+                    </div>
+                    </td>
+                </tr>
+                <?php } ?>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+         
+
+<script>
+    $('.del').click(function(){
+        if (!confirm('确认删除?')) {
+            return false;
+        }
+    });
+</script>

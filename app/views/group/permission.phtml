@@ -1,0 +1,88 @@
+
+<div class="box">
+        <div class="box-header with-border">
+        <h3 class="box-title"><a href="index">管理员组</a>
+        <small>>>权限设置</small></h3>
+            </div>
+
+        <form method="post" action="addpermi">
+            <!-- /.box-header -->
+            <div class="box-body">
+            <input type="hidden" name="groupId" value="<?=$groupid; ?>">
+              <table class="table table-hover">
+                <thead><tr>
+                <th width="60px;" class="center">
+                    <label>
+                        <input type='checkbox' class='ace ace-checkbox-1 chk-all-1'>
+                        <span class="lbl"></span>
+                    </label>
+                </th>
+                <th>菜单名</th>
+                <th >控制器</th>
+                <th >方法</th>
+                </tr></thead><tbody>
+                <?php echo $treeMenu; ?>
+              </tbody></table>
+                <div class="box-footer">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="btn-group pull-left">
+                        <button type="submit" class="btn btn-primary ">提交</button>
+                        </div>
+                        <div> &nbsp<a type="button" href= 'index' class="btn btn-danger">返回</a></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+</div>
+
+
+<script>
+    var chkAll={};
+    chkAll.run = function(all, items){
+        all.on('click', function (){
+            if(all.is(':checked')){
+                items.each(function(){
+                    this.checked = true;
+                });
+            }else{
+                items.each(function (){
+                    this.checked = false;
+                });
+            }
+        });
+
+        items.on('click', function(){
+            if(! $(this).is(':checked')){
+                all.prop('checked', false);
+            }else{
+                if(items.length == items.filter(':checked').length){
+                    all.prop('checked', true);
+                }
+            }
+        });
+    };
+
+    chkAll.run($('.chk-all-1'), $('.chk-item-1'));
+
+    $('input[type="checkbox"]').click(function(){
+        var pid = $(this).attr('pid');
+        var pObj = $('#'+pid);
+        if (pid == 0) {
+            var thisId = $(this).attr('id');
+            if ($(this).is(':checked')) {
+                $('input[type="checkbox"][pid='+thisId+']').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('input[type="checkbox"][pid='+thisId+']').each(function(){
+                    this.checked = false;
+                });
+            }
+        }
+
+        if (!pObj.is(':checked') && $(this).is(':checked')) {
+            pObj.prop('checked', true);
+        }
+    });
+</script>

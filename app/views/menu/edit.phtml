@@ -1,0 +1,117 @@
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                <h1 class="box-title"><a href="index">菜单管理</a><small>>>编辑</small></h1>
+                </div>
+
+                <form action="edit" method="post" class="form-horizontal" id = 'signupForm' enctype="multipart/form-data" >
+                    <input type="hidden" name="id" value="<?php echo $info['m_id']; ?>" />
+                    <input type="hidden" name="id" value="<?php echo $info['m_id']; ?>" />
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">菜单名称</label>
+                            <div class="col-sm-3">
+                        <input type="text" name = 'name' value="<?php echo $info['m_name']; ?>" class="form-control input-sm form-control-nowidth input-medium-width" id="name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">控制器名</label>
+                            <div class="col-sm-3">
+                        <input type="text" name = 'controller' readonly value="<?php echo $info['m_controller']; ?>" class="form-control input-sm form-control-nowidth input-medium-width" id="controller">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">方法名</label>
+                            <div class="col-sm-3">
+                            <input type="text" name = 'action'  value="<?php echo $info['m_action']; ?>" class="form-control input-sm form-control-nowidth input-medium-width" id="action">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">图标</label>
+                            <div class="col-sm-3">
+                            <input type="text" name = 'icon'  value="<?php echo $info['m_icon']; ?>" class="form-control input-sm form-control-nowidth input-medium-width" id="icon">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">是否显示菜单</label>
+                            <div class="col-sm-2">
+                            <select class="form-control" name="display" id="form-field-select-1">
+                                <option <?php echo $info['m_dis'] == 1 ? 'selected="selected"' : ''; ?> value="1">是</option>
+                                <option <?php echo $info['m_dis'] == 3 ? 'selected="selected"' : ''; ?> value="3">否</option>
+                            </select>
+                            </div>
+                        </div>
+
+                <div class="box-footer">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="btn-group pull-left">
+                        <button type="submit" class="btn  btn-primary ">提交</button>
+                        </div>
+                        <div> &nbsp<a type="button" href= 'index' class="btn btn-danger">返回</a></div>
+                    </div>
+               
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+<script>
+    $('select[name="site"] option[value="<?php echo $info['m_site']; ?>"]').attr("selected", "selected");
+</script>
+
+<script type="text/javascript">
+    $('form').validate({
+            // errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 12
+                },
+                controller: {
+                    required: true,
+                    maxlength: 20
+                },
+                action: {
+                    required: true,
+                    maxlength: 20
+                }
+            },
+
+            messages: {
+                name: {
+                    required: "请输入用户名",
+                    maxlength: "用户名长度不大于12"
+                },
+                controller: {
+                    required: "请输入控制器名",
+                    maxlength: "控制器名长度不大于20"
+                },
+                action: {
+                    required: "请输入方法名",
+                    maxlength: "方法名长度不大于20"
+                }
+            },
+
+
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            },
+        });
+</script>

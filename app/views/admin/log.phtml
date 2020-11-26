@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="box">
+        <div class="box-header with-border">
+            <h5 class="box-title"><a href="/admin/log">操作日志</a></h5>
+        </div>
+        <div class="box-body">
+            <div class="search-box clearfix">
+            <form >
+                <div class="mailbox-controls form-inline">
+                    <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><strong> 管理员名</strong></span>
+                        <input type="text" class="form-control input-sm form-control-nowidth" placeholder="" name="user" >
+                    </div>
+
+                    <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><strong>开始时间</strong></span>
+                      <input type="text" class="form-control input-sm form-control-nowidth " name='start' id="start">
+                    </div>
+
+                    <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><strong>结束时间</strong></span>
+                      <input type="text" class="form-control input-sm form-control-nowidth " name='end' id="end">
+                    </div>
+
+                    <button type="submit" class="btn btn-default btn-sm checkbox-toggle">搜索</button>
+                </div>
+            </form>
+            </div>
+            <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center th-center">
+                <tr>
+                    <th>ID</th>
+                    <th>管理员</th>
+                    <th >控制器</th>
+                    <th >方法</th>
+                    <th >内容</th>
+                    <th >IP</th>
+                    <th >时间</th>
+                </tr>
+        
+                <?php if(!empty($res['total'])) : foreach ($res['list'] as $value) : ?>
+                    <tr>
+                        <td><?=$value['al_id']; ?></td>
+                        <td><?=$value['al_u_name']; ?></td>
+                        <td><?=$value['al_controller']; ?></td>
+                        <td><?=$value['al_action']; ?></td>
+                        <td><?=$value['al_content']; ?></td>
+                        <td><?=$value['al_logip']; ?></td>
+                        <td><?=date('Y-m-d H:i:s', $value['al_logtime']); ?></td>
+                    </tr>
+                    <?php endforeach; else:?>
+                <tr class="null">
+                    <td colspan="7">暂无任何数据</td>
+                </tr>
+                <?php endif;?>
+            </table>
+        </div>
+
+        <div class=" mt15 clearfix">
+            <div class="text-right">
+            <?=$page?>
+            </div>
+        </div>
+</div>
+    </div>
+</div>
+<script>
+laydate.render({
+  elem: '#start'
+  ,type: 'datetime'
+}); 
+
+laydate.render({
+  elem: '#end'
+  ,type: 'datetime'
+}); 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

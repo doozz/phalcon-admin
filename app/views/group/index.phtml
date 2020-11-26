@@ -1,0 +1,54 @@
+<div class="row">
+    <div class = "box">
+        <div class="box-header with-border">
+            <h3 class="box-title">管理员组</h3>
+            <div class="box-tools">
+                <a href="add">
+                <button type="button" class="btn bg-maroon margin btn-sm" style="margin-top: 8px;">
+                    <i class="fa fa-fw fa-plus"></i>新增
+                </button>
+                </a>
+            </div>
+        </div>
+   
+        <div class="box-body">
+        <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center th-center">
+            <tr>
+                <th>组名</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($list as $group) : ?>
+                <tr>
+                    <td><?php echo $group['pg_name']; ?></td>
+                    <td>
+                    <a href="permission?gid=<?php echo $group['pg_id']; ?>" title="权限设置" class="btn btn-success btn-sm checkbox-toggle">
+                        <i class="ace-icon fa fa-fw fa-wrench"></i>
+                        设置权限
+                    </a>
+                    <a  href="edit?id=<?php echo $group['pg_id']; ?>" title="编辑" class="btn btn-info btn-sm checkbox-toggle">
+                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                        编辑
+                    </a>
+                    <a href="del?id=<?php echo $group['pg_id']; ?>" title="删除" class="btn btn-danger btn-sm checkbox-toggle del" id = '<?php echo $item['a_id'] ?>'>
+                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                        删除
+                    </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+    </div>
+
+
+<script>
+    $('.del').click(function(){
+        if (!confirm('确认删除?')) {
+            return false;
+        }
+    });
+</script>
+
+

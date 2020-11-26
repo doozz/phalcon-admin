@@ -1,0 +1,14 @@
+{
+  "name": "fans",
+  "description": "gRPC example for PHP",
+  "require": {
+    "robmorgan/phinx": "^0.11.4",
+    "symfony/yaml": "^4.4"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}

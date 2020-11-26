@@ -1,0 +1,30 @@
+<?php
+    $cls = $error ? 'alert alert-danger alert-dismissible' : 'alert alert-success alert-dismissible';
+?>
+    <div class="col-md-4 col-md-offset-4" >
+    <div class="<?php echo $cls; ?>" style="text-align: center;">
+        <div>
+            <?php echo $msg; ?>
+            <br/>
+            <span id="jumpTo"></span>秒后自动跳转
+            </a>
+        </div>
+    </div>
+    </div> 
+
+<script type="text/javascript">
+    function countDown(secs,surl){
+         
+         var jumpTo = document.getElementById('jumpTo');
+
+         jumpTo.innerHTML=secs;
+         if(--secs>0){
+             setTimeout("countDown("+secs+",'"+surl+"')",1000);
+             }
+         else{
+             location.href=surl;
+         }
+     }
+
+     countDown('<?php echo $sec; ?>', '<?php echo $back_url; ?>');
+</script> 

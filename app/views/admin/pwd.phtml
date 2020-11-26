@@ -1,0 +1,87 @@
+
+  
+        <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                <h1 class="box-title"><a href="index">管理员</a><small>>>修改登录密码</small></h1>
+                </div>
+            
+            <form action="pwd" method="post" class="form-horizontal"  id = 'signupForm' enctype="multipart/form-data" >
+            <div class="box-body">
+                <div class="form-group bd mlr group-style">
+                    <label class="col-sm-3 control-label text-left plr">原密码</label>
+                    <div class="col-sm-4 plr form-right">
+                        <input name="pwd" class="form-control size-small" type="password" placeholder="请输入原登录密码" required="" aria-required="true">
+                    </div>
+                </div>
+                <div class="form-group bd mlr group-style">
+                    <label class="col-sm-3 control-label text-left plr">新密码</label>
+                    <div class="col-sm-4 plr form-right">
+                        <input name="new_pwd" id="new_pwd"  placeholder="请输入新登录密码" class="form-control size-small" type="password" required="" aria-required="true">
+                    </div>
+                </div>
+                <div class="form-group bd mlr group-style">
+                    <label class="col-sm-3 control-label text-left plr">确认新密码</label>
+                    <div class="col-sm-4 plr form-right">
+                        <input name="repeat_pwd"   placeholder="请再次输入新登录密码" class="form-control size-small" type="password" required="" aria-required="true">
+                    </div>
+                </div>
+                <div class="form-group mlr group-style mt30">
+                    <div class="col-sm-4 plr col-sm-offset-3 text-center">
+                      <button type="submit" class="btn  btn-primary mr20" id="sub">确认修改</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        
+        </div>
+    </div>
+
+<script>
+    $('form').validate({
+            // errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            rules: {
+                pwd: {
+                    required: true,
+                    rangelength:[6,16]
+                },
+                new_pwd: {
+                    required: true,
+                    rangelength:[6,16]
+                },
+                repeat_pwd: {
+                    required: true,
+                    rangelength:[6,16],
+                    equalTo: '#new_pwd'
+                },
+            },
+            messages: {
+              pwd: {
+                required: "请输入正确格式登录密码",
+                rangelength: '请输入6~16位登录密码'
+              },
+              new_pwd: {
+                required: '请输入正确格式新密码',
+                rangelength: '请输入6~16位新密码'
+            },
+              repeat_pwd: {
+                required: '请输入正确格式确认密码',
+                rangelength: '请输入6~16位确认密码',
+                equalTo: '两次密码不一致'
+            },
+          },
+
+
+           highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            },
+        });      
+</script>
